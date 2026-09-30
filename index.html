@@ -25,70 +25,386 @@
     href="https://parcowongpw.github.io/"
   >
 
+  <meta name="theme-color" content="#f5f3ee">
+
   <title>Parco Wong | Economics PhD Candidate at UCL</title>
 
   <style>
-    body {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 50px 24px 60px;
+    :root {
+      --paper: #f5f3ee;
+      --paper-deep: #ece9e1;
+      --ink: #22241f;
+      --muted: #6d7169;
+      --line: #d8d4ca;
+      --accent: #6b2f56;
+      --accent-dark: #4e213f;
+      --white: #fffdf9;
+      --max: 1120px;
+    }
+
+    * {
       box-sizing: border-box;
-      font-family: Georgia, serif;
-      line-height: 1.6;
-      color: #222;
     }
 
-    h1,
-    h2 {
-      font-family: Arial, sans-serif;
+    html {
+      scroll-behavior: smooth;
     }
 
-    h2 {
-      margin-top: 34px;
-      margin-bottom: 12px;
-    }
-
-    .hero {
-      margin-bottom: 38px;
-      text-align: center;
-    }
-
-    .profile-picture {
-      display: block;
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 18px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .hero h1 {
+    body {
       margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family:
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    .affiliation {
-      margin: 10px 0 0;
+    a {
+      color: inherit;
+      text-decoration-color: rgba(107, 47, 86, 0.42);
+      text-underline-offset: 0.2em;
+      transition:
+        color 160ms ease,
+        text-decoration-color 160ms ease;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .shell {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+    }
+
+    /* ---------- Top navigation ---------- */
+
+    .site-header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand:hover {
+      color: var(--ink);
     }
 
     nav {
       display: flex;
-      justify-content: center;
-      gap: 22px;
-      margin-top: 18px;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      letter-spacing: 0.075em;
+      text-transform: uppercase;
     }
 
-    .paper {
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--accent);
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+      gap: clamp(48px, 7vw, 92px);
+      align-items: center;
+      padding: clamp(58px, 8vw, 104px) 0 clamp(70px, 9vw, 118px);
+    }
+
+    .portrait-frame {
+      position: relative;
+    }
+
+    .portrait-frame::before {
+      content: "";
+      position: absolute;
+      inset: 18px -18px -18px 18px;
+      border: 1px solid var(--line);
+      z-index: -1;
+    }
+
+    .profile-picture {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: 50% 50%;
+      background: var(--paper-deep);
+    }
+
+    .eyebrow {
+      margin: 0 0 13px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 7vw, 78px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .role {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 2.5vw, 27px);
+      line-height: 1.45;
+    }
+
+    .intro {
+      max-width: 710px;
+      margin: 29px 0 0;
+      font-size: 18px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-top: 30px;
+      font-size: 15px;
+    }
+
+    .hero-links a {
+      font-weight: 600;
+      text-decoration-thickness: 1px;
+    }
+
+    /* ---------- Main sections ---------- */
+
+    main {
+      border-top: 1px solid var(--line);
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: clamp(30px, 6vw, 76px);
+      padding: 66px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-body {
+      max-width: 790px;
+    }
+
+    .section-body > :first-child {
+      margin-top: 0;
+    }
+
+    .section-body > :last-child {
+      margin-bottom: 0;
+    }
+
+    .section-lead {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(23px, 3vw, 31px);
+      line-height: 1.45;
       margin-bottom: 22px;
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding-top: 32px;
+    /* ---------- Papers ---------- */
+
+    .paper-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .paper {
+      padding: 0 0 30px;
+      margin: 0 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .paper:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .paper-title {
+      margin: 0 0 7px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 2.6vw, 27px);
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .paper-meta,
+    .paper-note {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .paper-links {
+      display: flex;
+      gap: 18px;
+      margin-top: 11px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .paper-links a {
+      text-decoration: none;
+      border-bottom: 1px solid rgba(107, 47, 86, 0.42);
+    }
+
+    /* ---------- Contact ---------- */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 44px;
+    }
+
+    .contact-item {
+      margin: 0;
+    }
+
+    .contact-kicker {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- Footer ---------- */
+
+    footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(calc(100% - 32px), var(--max));
       }
 
-      .profile-picture {
-        width: 150px;
-        height: 150px;
+      .topbar {
+        min-height: auto;
+        padding: 22px 0 18px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      nav {
+        width: 100%;
+        gap: 19px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 46px;
+        padding: 46px 0 68px;
+      }
+
+      .portrait-frame {
+        width: min(100%, 420px);
+      }
+
+      .portrait-frame::before {
+        inset: 12px -12px -12px 12px;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 14vw, 68px);
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 48px 0;
+      }
+
+      .section-body {
+        max-width: none;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition: none !important;
       }
     }
   </style>
@@ -96,84 +412,189 @@
 
 <body>
 
-  <header class="hero">
-    <img
-      src="githubpic.jpeg"
-      alt="Photo of Parco Wong"
-      class="profile-picture"
-    >
-
-    <h1>Parco Wong</h1>
-
-    <p class="affiliation">
-      Parco Pak-Wing Wong<br>
-      PhD Candidate in Economics<br>
-      University College London
-    </p>
-
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="#research">Research</a>
-      <a
-        href="AcademicCV_20260723.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        CV
+  <header class="site-header">
+    <div class="shell topbar">
+      <a class="brand" href="index.html" aria-label="Parco Wong home">
+        Parco Wong
       </a>
-    </nav>
+
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a
+          href="AcademicCV_20260723.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          CV
+        </a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <h2>About</h2>
+  <div class="shell">
 
-    <p>
-      I am a PhD Candidate in Economics at University College London,
-      supervised by Professor Rani Spiegler and Professor Philippe Jehiel.
-      My research interests are in microeconomic theory, behavioral industrial
-      organization, and consumer learning.
-    </p>
+    <section class="hero" aria-labelledby="page-title">
 
-    <h2 id="research">Working Papers</h2>
+      <div class="portrait-frame">
+        <img
+          src="githubpic.jpeg"
+          alt="Photo of Parco Wong"
+          class="profile-picture"
+        >
+      </div>
 
-    <div class="paper">
-  <strong>
-    Price Parity under Imperfect Recommendation Alignment
-  </strong><br>
-  with Ronald Tsz Hin Hung.<br>
-  Work in progress, September 2026.
-</div>
+      <div class="hero-copy">
+        <p class="eyebrow">
+          Economics · University College London
+        </p>
 
-<div class="paper">
-      <strong>
-        When Scores Mislead: Artificial Intelligence and Human Capital Formation
-      </strong><br>
-       Working paper, August 2026.<br>
-    </div>
-    
-    <div class="paper">
-      <strong>
-        Monopoly Pricing when Consumers Use a Misspecified Model
-      </strong><br>
-      Working paper, August 2026.<br>
-      <a
-        href="Monopoly_Pricing_with_Consumer_Misspecification.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        PDF
-      </a>
-    </div>
+        <h1 id="page-title">
+          Parco Wong
+        </h1>
 
-    <h2>Contact</h2>
+        <p class="role">
+          Parco Pak-Wing Wong<br>
+          PhD Candidate in Economics
+        </p>
 
-    <p>
-      Email:
-      <a href="mailto:uctppww@ucl.ac.uk">
-        uctppww@ucl.ac.uk
-      </a>
-    </p>
-  </main>
+        <p class="intro">
+          I am a PhD Candidate in Economics at University College London,
+          supervised by Professor Rani Spiegler and Professor Philippe Jehiel.
+          My research interests are in microeconomic theory, behavioral
+          industrial organization, and consumer learning.
+        </p>
+
+        <div class="hero-links">
+          <a
+            href="AcademicCV_20260723.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Curriculum vitae
+          </a>
+
+          <a href="mailto:uctppww@ucl.ac.uk">
+            uctppww@ucl.ac.uk
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <main>
+
+      <section class="section" id="about">
+        <h2 class="section-label">
+          About
+        </h2>
+
+        <div class="section-body">
+          <p class="section-lead">
+            I work on questions in microeconomic theory and behavioural
+            economics, with particular interest in how imperfect models,
+            learning, and information shape economic behaviour.
+          </p>
+
+          <p>
+            I am based in the Department of Economics at University College
+            London. My current work studies consumer misspecification,
+            recommendation systems and price parity, and human-capital
+            formation.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="research">
+        <h2 class="section-label">
+          Working papers
+        </h2>
+
+        <div class="section-body paper-list">
+
+          <article class="paper">
+            <h3 class="paper-title">
+              Price Parity under Imperfect Recommendation Alignment
+            </h3>
+
+            <p class="paper-meta">
+              with Ronald Tsz Hin Hung
+            </p>
+
+            <p class="paper-note">
+              Work in progress, September 2026.
+            </p>
+          </article>
+
+          <article class="paper">
+            <h3 class="paper-title">
+              When Scores Mislead: Artificial Intelligence and Human Capital Formation
+            </h3>
+
+            <p class="paper-note">
+              Working paper, August 2026.
+            </p>
+          </article>
+
+          <article class="paper">
+            <h3 class="paper-title">
+              Monopoly Pricing when Consumers Use a Misspecified Model
+            </h3>
+
+            <p class="paper-note">
+              Working paper, August 2026.
+            </p>
+
+            <div class="paper-links">
+              <a
+                href="Monopoly_Pricing_with_Consumer_Misspecification.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                PDF
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2 class="section-label">
+          Contact
+        </h2>
+
+        <div class="section-body contact-grid">
+
+          <p class="contact-item">
+            <span class="contact-kicker">
+              Email
+            </span>
+
+            <a href="mailto:uctppww@ucl.ac.uk">
+              uctppww@ucl.ac.uk
+            </a>
+          </p>
+
+          <p class="contact-item">
+            <span class="contact-kicker">
+              Institution
+            </span>
+
+            University College London
+          </p>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © 2026 Parco Wong
+    </footer>
+
+  </div>
 
 </body>
 </html>
